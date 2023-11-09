@@ -1,5 +1,4 @@
 import QuestLog from "@/components/Quest Log";
-import QuestTile from "@/components/Quest Log/QuestTile";
 
 export default function Home() {
   return (
