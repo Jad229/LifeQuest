@@ -3,9 +3,9 @@ interface QuestTileProps {
 }
 function QuestTile({ title }: QuestTileProps): JSX.Element {
   return (
-    <div className="flex justify-between items-center bg-black text-white">
+    <div className="flex justify-between items-center bg-blue-500 border-white rounded-full p-1 shadow-lg">
       <h3>{title}</h3>
-      <button className="bg-red-600 p-2">+</button>
+      <button className="p-2 rounded-r-full border-2 bg-green-500">Info</button>
     </div>
   );
 }
