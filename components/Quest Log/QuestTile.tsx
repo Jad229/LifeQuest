@@ -21,7 +21,7 @@ function QuestTile({
     setIsModalOpen(false);
   }
   return (
-    <div className="flex justify-between items-center w-full text-neutral-200 p-5">
+    <div className="flex justify-between items-center w-full border-b border-neutral-800 rounded-md text-neutral-200 p-5">
       <div>
         <h3 className="text-lg">{title}</h3>
       </div>
