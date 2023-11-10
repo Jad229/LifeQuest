@@ -1,4 +1,4 @@
-import QuestLog from "@/components/Quest Log";
+import QuestLog from "@/components/QuestLog";
 
 export default function Home() {
   return (
