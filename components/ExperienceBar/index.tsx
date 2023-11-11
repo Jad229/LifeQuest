@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 const user = {
   username: "User",
-  currentExp: 500,
-  level: 5
+  currentExp: 7000,
+  level: 50
 }
 
 
@@ -29,7 +29,7 @@ function ExperienceBar(){
   
   return (
     <div className="mx-auto w-full lg:w-1/2">
-        <div className=' w-full bg-white h-7 text-black font-bold rounded-full'>
+        <div className=' w-full bg-white h-7 text-black font-bold rounded-full p-0.5'>
             <div className="h-full bg-green-500 rounded-full border border-white transition-all ease-out duration-500" style={{width: `${experienceBar}%`}}></div>
         </div>
         <p className="self-start">Progress: </p>
