@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { FaPlus } from "react-icons/fa"
+import { FaCheck } from "react-icons/fa";
 interface QuestTileProps {
   title: string;
   expGain: number;
@@ -30,7 +30,7 @@ function QuestTile({
         onClick={showQuestDetails}
         className="p-2 border-none rounded-md bg-green-500 text-black"
       >
-       <FaPlus/>
+        <FaCheck />
       </button>
 
       {isModalOpen && (
