@@ -34,11 +34,11 @@ function QuestLog({ title, quests }: QuestLogProps): JSX.Element {
   }
 
   const filteredQuests = quests.filter((quest) => quest.category === selectedCategory);
-  
+
   return (
-    <section className="text-center lg:max-w-5xl">
+    <section className="text-center">
       <h1 className="text-2xl mb-5">{title}</h1>
-      <div className="ml-10 flex gap-2">
+      <div className="flex mx-auto pl-10 gap-2 lg:w-1/2 ">
         {
           Object.values(QuestType).map((type) => (
             <button
