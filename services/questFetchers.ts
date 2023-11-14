@@ -1,13 +1,4 @@
-
-interface Quest{
-  id: number;
-  title: string;
-  expGain: number;
-  skills: string[];
-  description: string;
-  category: string;
-  date?: Date;
-}
+import { Quest } from "@/types/questTypes";
 
 const quests: Quest[] = [
     {

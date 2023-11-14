@@ -1,15 +1,7 @@
 "use client";
 import { useState } from "react";
 import QuestTile from "./QuestTile";
-
-interface Quest {
-  id: number;
-  title: string;
-  expGain: number;
-  skills: string[];
-  description: string;
-  category: string;
-}
+import { Quest } from "@/types/questTypes";
 interface QuestLogProps {
   title: string;
   quests: Quest[];
