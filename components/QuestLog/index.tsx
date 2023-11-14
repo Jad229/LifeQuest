@@ -14,7 +14,6 @@ interface QuestLogProps {
   quests: Quest[];
 }
 
-
 function QuestLog({ title, quests }: QuestLogProps): JSX.Element {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
