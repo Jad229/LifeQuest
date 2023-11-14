@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-       domains: ["cdn.vectorstock.com"]
+       remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "cdn.vectorstock.com",
+            } 
+       ]
     }
 }
 
