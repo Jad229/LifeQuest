@@ -1,8 +1,17 @@
 "use client";
 import { useState } from "react";
 import QuestTile from "./QuestTile";
+
+interface Quest {
+  id: number;
+  title: string;
+  expGain: number;
+  skills: string[];
+  description: string;
+}
 interface QuestLogProps {
   title: string;
+  quests: Quest[];
 }
 
 const quests: {
