@@ -17,6 +17,7 @@ export default function Home() {
       </div>
       <ExperienceBar />
       <QuestLog title="Dailies" />
+      <QuestLog title="Habits" />
       <Leaderboard />
     </main>
   );
