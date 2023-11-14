@@ -6,9 +6,8 @@ import { fetchDailyQuests, fetchHabitQuests, fetchTodoQuests } from "@/services/
 
 export default async function Home(){
 
-  const dailyQuests = await fetchDailyQuests();
-  const habitQuests = await fetchHabitQuests();
-  const todoQuests = await fetchTodoQuests();
+  const quests = await fetchDailyQuests();
+
 
   return (
     <main className="p-5 flex flex-col gap-6">
@@ -23,8 +22,8 @@ export default async function Home(){
         />
       </div>
       <ExperienceBar />
-      <QuestLog title="Dailies" quests={dailyQuests} />
-      <QuestLog title="Habits" quests={habitQuests} />
+      <QuestLog title="Quests" quests={quests} />
+
       <Leaderboard />
     </main>
   );

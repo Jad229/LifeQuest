@@ -1,16 +1,22 @@
-const quests: {
-    id: number;
-    title: string;
-    expGain: number;
-    skills: string[];
-    description: string;
-  }[] = [
+
+interface Quest{
+  id: number;
+  title: string;
+  expGain: number;
+  skills: string[];
+  description: string;
+  category: string;
+  date?: Date;
+}
+
+const quests: Quest[] = [
     {
       id: 1,
       title: "Coding Project",
       expGain: 100,
       skills: ["Programming", "Problem Solving"],
       description: "Work on a coding project to improve your programming skills.",
+      category: "Todos"
     },
     {
       id: 2,
@@ -18,6 +24,7 @@ const quests: {
       expGain: 50,
       skills: ["Fitness", "Strength"],
       description: "Hit the gym and have a good workout session.",
+      category: "Habits"
     },
     {
       id: 3,
@@ -25,6 +32,7 @@ const quests: {
       expGain: 30,
       skills: ["Intellect", "Knowledge"],
       description: "Read 10 pages of a book to expand your knowledge.",
+      category: "Dailies"
     },
     {
       id: 4,
@@ -33,6 +41,7 @@ const quests: {
       skills: ["Mental Clarity", "Stress Management"],
       description:
         "Practice meditation for 15 minutes to improve mental clarity and reduce stress.",
+      category: "Dailies"
     },
     {
       id: 5,
@@ -41,6 +50,7 @@ const quests: {
       skills: ["Culinary", "Creativity"],
       description:
         "Try cooking a new recipe and experiment with different ingredients.",
+      category: "Habits"
     },
   ];
 
