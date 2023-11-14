@@ -8,9 +8,8 @@ export default async function Home(){
 
   const quests = await fetchDailyQuests();
 
-
   return (
-    <main className="p-5 flex flex-col gap-6">
+    <main className="max-w-6xl mx-auto p-5 flex flex-col gap-6">
       <div className="flex justify-between items-center">
         <h2 className="font-bold text-xl">Welcome, User</h2>
         <Image
@@ -23,7 +22,6 @@ export default async function Home(){
       </div>
       <ExperienceBar />
       <QuestLog title="Quests" quests={quests} />
-
       <Leaderboard />
     </main>
   );
