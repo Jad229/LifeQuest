@@ -1,66 +1,20 @@
 "use client";
 import { useState } from "react";
 import QuestTile from "./QuestTile";
-
-interface Quest {
-  id: number;
-  title: string;
-  expGain: number;
-  skills: string[];
-  description: string;
-}
+import { Quest } from "@/types/questTypes";
 interface QuestLogProps {
   title: string;
   quests: Quest[];
 }
 
-const quests: {
-  id: number;
-  title: string;
-  expGain: number;
-  skills: string[];
-  description: string;
-}[] = [
-  {
-    id: 1,
-    title: "Coding Project",
-    expGain: 100,
-    skills: ["Programming", "Problem Solving"],
-    description: "Work on a coding project to improve your programming skills.",
-  },
-  {
-    id: 2,
-    title: "Gym Workout",
-    expGain: 50,
-    skills: ["Fitness", "Strength"],
-    description: "Hit the gym and have a good workout session.",
-  },
-  {
-    id: 3,
-    title: "Reading Challenge",
-    expGain: 30,
-    skills: ["Intellect", "Knowledge"],
-    description: "Read 10 pages of a book to expand your knowledge.",
-  },
-  {
-    id: 4,
-    title: "Meditation",
-    expGain: 40,
-    skills: ["Mental Clarity", "Stress Management"],
-    description:
-      "Practice meditation for 15 minutes to improve mental clarity and reduce stress.",
-  },
-  {
-    id: 5,
-    title: "Cooking Experiment",
-    expGain: 60,
-    skills: ["Culinary", "Creativity"],
-    description:
-      "Try cooking a new recipe and experiment with different ingredients.",
-  },
-];
+enum QuestType {
+  Dailies = 'Dailies',
+  Habits = 'Habits',
+  Todos = 'Todos',
+}
 
-function QuestLog({ title }: QuestLogProps): JSX.Element {
+function QuestLog({ title, quests }: QuestLogProps): JSX.Element {
+  const [selectedCategory, setSelectedCategory] = useState<QuestType>(QuestType.Dailies); // ["daily", "habit", "todo"
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   function openForm() {
@@ -70,9 +24,25 @@ function QuestLog({ title }: QuestLogProps): JSX.Element {
   function closeForm() {
     setIsFormOpen(false);
   }
+
+  const filteredQuests = quests.filter((quest) => quest.category === selectedCategory);
+
   return (
     <section className="text-center">
       <h1 className="text-2xl mb-5">{title}</h1>
+      <div className="flex mx-auto pl-10 gap-2 lg:w-1/2 ">
+        {
+          Object.values(QuestType).map((type) => (
+            <button
+              key={type}
+              onClick={() => setSelectedCategory(type)}
+              className={`rounded-t-md py-2 px-6 font-semibold border border-purple-600 border-b-0 ${selectedCategory === type ? 'bg-purple-600 text-white' : ''}`}
+            >
+              {type}
+            </button>
+          ))
+        }
+        </div>
       <div className="flex flex-col mx-auto justify-center lg:w-1/2 border border-neutral-500 rounded-lg shadow-xl">
         <button
           onClick={openForm}
@@ -81,8 +51,9 @@ function QuestLog({ title }: QuestLogProps): JSX.Element {
           + Add new task
         </button>
         <hr className="my-3 opacity-30" />
-        {quests.map((quest) => (
+        {filteredQuests.map((quest) => (
           <QuestTile
+            key={quest.id}
             title={quest.title}
             expGain={quest.expGain}
             description={quest.description}
