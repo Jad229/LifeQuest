@@ -1,6 +1,6 @@
 import ExperienceBar from "@/components/ExperienceBar";
-import Leaderboard from "@/components/Leaderboard";
-import QuestLog from "@/components/QuestLog";
+import Leaderboard from "@/features/Leaderboard";
+import QuestLog from "@/features/QuestLog";
 import Image from "next/image";
 import { fetchDailyQuests, fetchHabitQuests, fetchTodoQuests } from "@/services/questFetchers";
 
