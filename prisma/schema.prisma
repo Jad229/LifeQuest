@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String  @id @default(uuid())
+  username  String  @unique
+  email     String  @unique
+  quests    Quest[]
+  level     Int     @default(1)
+  xp        Int     @default(0)
+  friends   User[]  @relation("Friends")
+  friendsOf User[]  @relation("Friends")
+}
+
+model Quest {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  category    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+}
