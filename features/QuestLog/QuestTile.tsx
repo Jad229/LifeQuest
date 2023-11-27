@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
+import Modal from "@/components/ui/Modal";
 interface QuestTileProps {
   title: string;
   expGain: number;
@@ -17,9 +18,6 @@ function QuestTile({
     setIsModalOpen(true);
   }
 
-  function hideQuestDetails(): void {
-    setIsModalOpen(false);
-  }
   return (
     <div className="flex justify-between items-center w-full border-b border-neutral-800 rounded-md text-neutral-200 p-5">
       <div>
@@ -33,24 +31,12 @@ function QuestTile({
         <FaCheck />
       </button>
 
-      {isModalOpen && (
-        <div className="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
-          <div className="flex flex-col gap-4 w-3/4 bg-white rounded-lg p-4 text-black">
-            <h1 className="text-2xl"> Quest Details </h1>
-            <div className="flex flex-col text-left">
-              {/* pull data from database and render as many quest rewards */}
-              <p>Exp: {expGain}</p>
-              <p>Description: {description}</p>
-            </div>
-            <button
-              onClick={hideQuestDetails}
-              className="bg-red-500 py-2 px-4 text-white"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      {isModalOpen && ( 
+        <Modal title={title} 
+        content={<p>Quest Information Content</p>} 
+        onClose={() => setIsModalOpen(false)} 
+        onConfirm={() => setIsModalOpen(false)}/> )
+      }
     </div>
   );
 }
