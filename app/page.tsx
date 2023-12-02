@@ -2,12 +2,11 @@ import ExperienceBar from "@/components/ExperienceBar";
 import Leaderboard from "@/features/Leaderboard";
 import QuestLog from "@/features/QuestLog";
 import Image from "next/image";
-import { fetchDailyQuests, fetchHabitQuests, fetchTodoQuests } from "@/services/questFetchers";
-import Modal from "@/components/ui/Modal";
+import { fetchQuests} from "@/services/questFetchers";
 
 export default async function Home(){
 
-  const quests = await fetchDailyQuests();
+  const quests = await fetchQuests();
 
   return (
     <main className="max-w-6xl mx-auto p-5 flex flex-col gap-6">
