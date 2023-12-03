@@ -49,7 +49,7 @@ const quests: Quest[] = [
 async function fetchQuests() {
   const response = await prisma.quest.findMany({
     where: {
-      userId: "bcefb20b-19d0-4bc4-91ad-41591ad7b5a1",
+      userId: "057d803d-2e15-4099-85a5-541822bc2a4b",
     },
   });
   console.log(response);
