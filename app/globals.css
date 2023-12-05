@@ -8,3 +8,14 @@
   text-align: left;
   gap: 10px;
 }
+
+.form-group input, .form-group select, .form-group textarea{
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-group label {
+  font-weight: bold;
+  font-size: 18px;
+}

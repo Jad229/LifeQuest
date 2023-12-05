@@ -2,8 +2,8 @@
 import { useState } from "react";
 import QuestTile from "./QuestTile";
 import { Quest } from "@/types/questTypes";
-import Modal from "@/components/ui/Modal";
-import QuestForm from "@/components/forms/QuestForm";
+import AddQuest from "@/components/AddQuest.tsx";
+
 interface QuestLogProps {
   title: string;
   quests: Quest[];
@@ -19,7 +19,6 @@ function QuestLog({ title, quests }: QuestLogProps): JSX.Element {
   const [selectedCategory, setSelectedCategory] = useState<QuestType>(
     QuestType.Dailies
   ); // ["daily", "habit", "todo"
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredQuests = quests.filter(
     (quest) => quest.category === selectedCategory
@@ -42,13 +41,9 @@ function QuestLog({ title, quests }: QuestLogProps): JSX.Element {
         ))}
       </div>
       <div className="flex flex-col mx-auto justify-center lg:w-1/2 border border-neutral-500 rounded-lg shadow-xl">
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="bg-amber-400 w-1/3 p-2 rounded-sm text-black font-semibold self-end mr-3 mt-3"
-        >
-          + Add new task
-        </button>
+        <AddQuest />
         <hr className="my-3 opacity-30" />
+
         {filteredQuests.map((quest) => (
           <QuestTile
             key={quest.id}
@@ -58,14 +53,6 @@ function QuestLog({ title, quests }: QuestLogProps): JSX.Element {
           />
         ))}
       </div>
-      {isModalOpen && (
-        <Modal
-          title={title}
-          content=<QuestForm />
-          onClose={() => setIsModalOpen(false)}
-          onConfirm={() => setIsModalOpen(false)}
-        />
-      )}
     </section>
   );
 }
