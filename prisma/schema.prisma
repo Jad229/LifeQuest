@@ -22,7 +22,7 @@ model Quest {
   id          String   @id @default(uuid())
   title       String
   description String?
-  difficulty  Int      @default(1)
+  difficulty  String   @default("easy")
   user        User?    @relation(fields: [userId], references: [id])
   userId      String?
   category    String

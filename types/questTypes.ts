@@ -3,7 +3,7 @@ export interface Quest {
   title: string;
   expGain?: number;
   skills?: string[];
-  description?: string | null;
+  description?: string | null | undefined;
   difficulty: number;
   category: string;
   date?: Date;

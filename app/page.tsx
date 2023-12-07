@@ -2,7 +2,7 @@ import ExperienceBar from "@/components/ExperienceBar";
 import Leaderboard from "@/features/Leaderboard";
 import QuestLog from "@/features/QuestLog";
 import Image from "next/image";
-import { fetchQuests } from "@/services/questFetchers";
+import { fetchQuests } from "@/services/quests";
 
 type Props = {
   searchParams: Record<string, string> | null | undefined;

@@ -4,9 +4,10 @@ import { FaCheck } from "react-icons/fa";
 import Modal from "@/components/ui/Modal";
 interface QuestTileProps {
   title: string;
+  description?: string | null | undefined;
 }
 
-function QuestTile({ title }: QuestTileProps): JSX.Element {
+function QuestTile({ title, description }: QuestTileProps): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
   function showQuestDetails(): void {
     setIsModalOpen(true);
@@ -27,7 +28,7 @@ function QuestTile({ title }: QuestTileProps): JSX.Element {
 
       {isModalOpen && (
         <Modal title={title}>
-          <p>Quest details</p>
+          <p>{description}</p>
         </Modal>
       )}
     </div>

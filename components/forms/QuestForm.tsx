@@ -1,10 +1,10 @@
 import { createQuestAction } from "@/app/actions";
-import prisma from "@/database/prisma";
-import { revalidatePath } from "next/cache";
+
 type Props = {};
 
 export default async function QuestForm({}: Props) {
   async function addQuest(data: FormData) {
+    "use server";
     const title: string = data.get("title") as string;
     const description: string = data.get("description") as string;
     const difficulty: string = data.get("difficulty") as string;
@@ -35,9 +35,9 @@ export default async function QuestForm({}: Props) {
       <div className="form-group ">
         <label>Difficulty</label>
         <select className="text-black" name="difficulty" id="difficulty">
-          <option value={3}>Hard</option>
-          <option value={2}>Medium</option>
-          <option value={1}>Easy</option>
+          <option value="hard">Hard</option>
+          <option value="medium">Medium</option>
+          <option value="easy">Easy</option>
         </select>
       </div>
       <div className="form-group ">
@@ -59,7 +59,9 @@ export default async function QuestForm({}: Props) {
           <option>Dailies</option>
         </select>
       </div>
-      <button>Submit</button>
+      <button type="submit" className="btn bg-green-500">
+        Submit
+      </button>
     </form>
   );
 }
