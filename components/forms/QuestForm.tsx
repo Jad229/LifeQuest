@@ -1,26 +1,20 @@
+import { createQuestAction } from "@/app/actions";
 import prisma from "@/database/prisma";
 import { revalidatePath } from "next/cache";
 type Props = {};
 
 export default async function QuestForm({}: Props) {
-  const addQuest = async (formData: FormData) => {
-    "use server";
-    const title = formData.get("title");
-    const description = formData.get("description");
-    const difficulty = parseInt(formData.get("difficulty"));
-    const category = formData.get("category");
+  async function addQuest(data: FormData) {
+    const title: string = data.get("title") as string;
+    const description: string = data.get("description") as string;
+    const difficulty: string = data.get("difficulty") as string;
+    const category: string = data.get("category") as string;
 
-    const newQuest = await prisma.quest.create({
-      data: {
-        title,
-        description,
-        difficulty,
-        category,
-      },
-    });
-    console.log(newQuest);
-    revalidatePath("/");
-  };
+    if (!title || !description || !difficulty || !category) return;
+
+    await createQuestAction(title, description, difficulty, category);
+  }
+
   return (
     <form
       action={addQuest}

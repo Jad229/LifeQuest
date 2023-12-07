@@ -43,12 +43,7 @@ function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
         <hr className="my-3 opacity-30" />
 
         {filteredQuests.map((quest) => (
-          <QuestTile
-            key={quest.id}
-            title={quest.title}
-            expGain={quest.expGain}
-            description={quest.description}
-          />
+          <QuestTile key={quest.id} title={quest.title} />
         ))}
       </div>
     </section>
