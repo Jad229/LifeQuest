@@ -23,8 +23,8 @@ model Quest {
   title       String
   description String?
   difficulty  Int      @default(1)
-  user        User     @relation(fields: [userId], references: [id])
-  userId      String
+  user        User?    @relation(fields: [userId], references: [id])
+  userId      String?
   category    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())

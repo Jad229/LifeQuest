@@ -1,70 +1,46 @@
 import prisma from "@/database/prisma";
-import { useState } from "react";
+import { revalidatePath } from "next/cache";
 type Props = {};
 
-export default function QuestForm({}: Props) {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    difficulty: 0,
-    category: "",
-  });
+export default async function QuestForm({}: Props) {
+  const addQuest = async (formData: FormData) => {
+    "use server";
+    const title = formData.get("title");
+    const description = formData.get("description");
+    const difficulty = parseInt(formData.get("difficulty"));
+    const category = formData.get("category");
 
-  console.log(formData);
-  function addQuest(e: any) {
-    e.preventDefault();
-
-    const { title, description, difficulty, category } = formData;
-
-    prisma.quest
-      .create({
-        data: {
-          title,
-          description,
-          difficulty,
-          category,
-        },
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }
-
-  function handleChange(e: any) {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  }
+    const newQuest = await prisma.quest.create({
+      data: {
+        title,
+        description,
+        difficulty,
+        category,
+      },
+    });
+    console.log(newQuest);
+    revalidatePath("/");
+  };
   return (
     <form
-      onSubmit={addQuest}
+      action={addQuest}
       className="flex flex-col gap-2 py-6 mx-auto bg-white text-black"
     >
       <div className="form-group ">
         <label>Title</label>
-        <input
-          onChange={handleChange}
-          name="title"
-          id="title"
-          type="text"
-          placeholder="Add a title"
-        />
+        <input name="title" id="title" type="text" placeholder="Add a title" />
       </div>
       <div className="form-group ">
         <label>Description</label>
         <textarea
-          onChange={handleChange}
           name="description"
           id="description"
-          placeholder="Add a title"
+          placeholder="Add a description"
         />
       </div>
       <div className="form-group ">
         <label>Difficulty</label>
-        <select
-          onChange={handleChange}
-          className="text-black"
-          name="difficulty"
-          id="difficulty"
-        >
+        <select className="text-black" name="difficulty" id="difficulty">
           <option value={3}>Hard</option>
           <option value={2}>Medium</option>
           <option value={1}>Easy</option>
@@ -72,12 +48,7 @@ export default function QuestForm({}: Props) {
       </div>
       <div className="form-group ">
         <label>Tags</label>
-        <select
-          onChange={handleChange}
-          className="text-black"
-          name="category"
-          id="category"
-        >
+        <select className="text-black" name="skill" id="skill">
           <option>Fitness & Health</option>
           <option>Work</option>
           <option>Chores</option>
@@ -86,6 +57,15 @@ export default function QuestForm({}: Props) {
           <option>Creativity</option>
         </select>
       </div>
+      <div className="form-group ">
+        <label>Tags</label>
+        <select className="text-black" name="category" id="category">
+          <option>Habits</option>
+          <option>Todos</option>
+          <option>Dailies</option>
+        </select>
+      </div>
+      <button>Submit</button>
     </form>
   );
 }

@@ -52,7 +52,7 @@ async function fetchQuests() {
       userId: "057d803d-2e15-4099-85a5-541822bc2a4b",
     },
   });
-  console.log(response);
+  // console.log(response);
   return response;
 }
 

@@ -2,10 +2,13 @@ import ExperienceBar from "@/components/ExperienceBar";
 import Leaderboard from "@/features/Leaderboard";
 import QuestLog from "@/features/QuestLog";
 import Image from "next/image";
-import { fetchQuests} from "@/services/questFetchers";
+import { fetchQuests } from "@/services/questFetchers";
 
-export default async function Home(){
+type Props = {
+  searchParams: Record<string, string> | null | undefined;
+};
 
+export default async function Home({ searchParams }: Props) {
   const quests = await fetchQuests();
 
   return (
@@ -21,9 +24,8 @@ export default async function Home(){
         />
       </div>
       <ExperienceBar />
-      <QuestLog title="Quests" quests={quests} />
+      <QuestLog title="Quests" quests={quests} searchParams={searchParams} />
       <Leaderboard />
     </main>
   );
 }
-
