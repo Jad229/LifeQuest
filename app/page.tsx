@@ -1,8 +1,8 @@
-import ExperienceBar from "@/components/ExperienceBar";
 import Leaderboard from "@/features/Leaderboard";
 import QuestLog from "@/features/QuestLog";
 import { fetchQuests } from "@/services/quests";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Progress } from "@/components/ui/progress";
 
 type Props = {
   searchParams: Record<string, string> | null | undefined;
@@ -20,7 +20,7 @@ export default async function Home({ searchParams }: Props) {
           <AvatarFallback>Avatar</AvatarFallback>
         </Avatar>
       </div>
-      <ExperienceBar />
+      <Progress value={33} />
       <QuestLog title="Quests" quests={quests} searchParams={searchParams} />
       <Leaderboard />
     </main>

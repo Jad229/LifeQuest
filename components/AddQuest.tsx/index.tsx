@@ -1,6 +1,7 @@
 import Link from "next/link";
 import QuestForm from "../forms/QuestForm";
 import Modal from "@/components/ui/Modal";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   searchParams: Record<string, string> | null | undefined;
@@ -11,12 +12,9 @@ const AddQuest = ({ searchParams }: Props) => {
 
   return (
     <div>
-      <Link
-        href="/?addQuestModal=true"
-        className="bg-amber-400 w-1/3 p-2 rounded-sm text-black font-semibold self-end mr-3 mt-3"
-      >
-        + Add new task
-      </Link>
+      <Button>
+        <Link href="/?addQuestModal=true">+ Add new task</Link>
+      </Button>
 
       {showModal && (
         <Modal title="Add New Quest">
