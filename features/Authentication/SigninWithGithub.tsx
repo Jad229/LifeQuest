@@ -4,9 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
 import { signIn } from "next-auth/react";
 
-type Props = {};
-
-export default function SigninWithGithub({}: Props) {
+export default function SigninWithGithub() {
   return (
     <Button
       onClick={() =>
