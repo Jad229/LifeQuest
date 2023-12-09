@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import { getServerSession } from "next-auth";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "LifeQuest",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <ThemeProvider attribute="dark" defaultTheme="system">
           <Navbar />
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

@@ -1,4 +1,4 @@
-import { createQuestAction } from "@/app/actions";
+import { createQuestAction } from "@/actions/quests";
 
 type Props = {};
 
