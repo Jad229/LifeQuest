@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -6,12 +5,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import SigninWithGithub from "@/features/Authentication/SigninWithGithub";
-type Props = {};
 
-export default function AuthRoute({}: Props) {
+import SignInForm from "@/features/Authentication/SignInForm";
+import SigninWithGithub from "@/features/Authentication/SigninWithGithub";
+import { authOptions } from "@/utils/auth";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+
+export default async function AuthRoute() {
+  const session = await getServerSession(authOptions);
+
+  if (session) {
+    return redirect("/");
+  }
+
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <Card>
@@ -23,11 +30,7 @@ export default function AuthRoute({}: Props) {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <Label>Email</Label>
-              <Input name="email" type="email" placeholder="name@example.com" />
-            </div>
-            <Button>Login with Email</Button>
+            <SignInForm />
             <hr />
             <SigninWithGithub />
           </div>
