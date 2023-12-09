@@ -18,8 +18,10 @@ export default async function Home({ searchParams }: Props) {
     <main className="max-w-6xl mx-auto p-5 flex flex-col gap-6">
       <h1>THIS IS A PUBLIC ROUTE</h1>
       {session ? (
-        <div className="bg-green-500 text-white p-2 rounded-md">
-          You are logged in!
+        <div>
+          <h1 className="bg-green-500 text-white p-2 rounded-md">
+            You are logged in!
+          </h1>
           <div className="flex justify-between items-center">
             <h2 className="font-bold text-xl">Welcome, Username</h2>
             <Avatar>
