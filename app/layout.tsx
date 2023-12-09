@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import Navbar from "@/components/Navbar";
+import { getServerSession } from "next-auth";
 
 export const metadata: Metadata = {
   title: "LifeQuest",
@@ -14,7 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-iron text-neutral-200">{children}</body>
+      <body>
+        <ThemeProvider attribute="dark" defaultTheme="system">
+          <Navbar />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
