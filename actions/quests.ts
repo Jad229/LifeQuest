@@ -7,8 +7,9 @@ export async function createQuestAction(
   title: string,
   description: string,
   difficulty: string,
-  category: string
+  category: string,
+  skill: string
 ) {
-  await createQuest(title, description, difficulty, category);
+  await createQuest(title, description, difficulty, skill, category);
   revalidatePath("/");
 }

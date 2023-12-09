@@ -60,6 +60,7 @@ model VerificationToken {
 model Quest {
   id          String   @id @default(uuid())
   title       String
+  skill       String   @default("none")
   description String?
   difficulty  String   @default("easy")
   user        User?    @relation(fields: [userId], references: [id])
