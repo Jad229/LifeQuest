@@ -13,7 +13,7 @@ type Props = {
 
 export default async function Home({ searchParams }: Props) {
   const session = await getServerSession(authOptions);
-  const quests = await fetchQuests();
+  const quests = await fetchQuests(session?.user?.id as string);
 
   return (
     <main className="relative max-w-6xl mx-auto p-5 flex flex-col gap-6">

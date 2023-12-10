@@ -1,7 +1,12 @@
 import prisma from "@/database/prisma";
 
-async function fetchQuests() {
-  const response = await prisma.quest.findMany();
+async function fetchQuests(userId: string) {
+  const response = await prisma.quest.findMany({
+    where: {
+      id: userId,
+    },
+  });
+
   return response;
 }
 
