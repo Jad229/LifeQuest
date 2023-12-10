@@ -31,7 +31,6 @@ export const authOptions = {
   callbacks: {
     session: async ({ session, user }) => {
       if (session?.user) {
-        // @ts-ignore
         session.user.id = user.id;
       }
       return session;

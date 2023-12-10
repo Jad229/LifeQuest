@@ -1,6 +1,6 @@
 import prisma from "@/database/prisma";
 
-async function fetchQuests(userId: string) {
+async function getQuests(userId: string) {
   const response = await prisma.quest.findMany({
     where: {
       id: userId,
@@ -15,10 +15,13 @@ async function createQuest(
   description: string,
   difficulty: string,
   category: string,
-  skill: string
+  skill: string,
+  userId: string
 ) {
+  const expGain = calculateExpGain(difficulty);
   const response = await prisma.quest.create({
     data: {
+      userId,
       title,
       description,
       difficulty,
@@ -28,4 +31,4 @@ async function createQuest(
   });
   return response;
 }
-export { fetchQuests, createQuest };
+export { getQuests, createQuest };

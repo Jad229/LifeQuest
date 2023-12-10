@@ -4,10 +4,15 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
 import { Button } from "../ui/button";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/utils/auth";
 
 type Props = {};
 
 export default async function QuestForm({}: Props) {
+  const session = await getServerSession(authOptions);
+  const userId = session?.user?.id as string;
+
   async function addQuest(data: FormData) {
     "use server";
     const title: string = data.get("title") as string;
@@ -18,7 +23,14 @@ export default async function QuestForm({}: Props) {
 
     if (!title || !description || !difficulty || !skill || !category) return;
 
-    await createQuestAction(title, description, difficulty, skill, category);
+    await createQuestAction(
+      title,
+      description,
+      difficulty,
+      skill,
+      category,
+      userId
+    );
   }
 
   return (

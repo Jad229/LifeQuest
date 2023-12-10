@@ -1,6 +1,6 @@
 import Leaderboard from "@/features/Leaderboard";
 import QuestLog from "@/features/QuestLog";
-import { fetchQuests } from "@/services/quests";
+import { getQuests } from "@/services/quests";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import { getServerSession } from "next-auth";
@@ -13,8 +13,7 @@ type Props = {
 
 export default async function Home({ searchParams }: Props) {
   const session = await getServerSession(authOptions);
-  const quests = await fetchQuests(session?.user?.id as string);
-
+  const quests = await getQuests(session?.user?.id as string);
   return (
     <main className="relative max-w-6xl mx-auto p-5 flex flex-col gap-6">
       {session ? (
