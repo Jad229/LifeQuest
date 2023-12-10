@@ -1,4 +1,7 @@
 import prisma from "@/database/prisma";
+import { calculateExpGain } from "./calculateExpGain";
+import { getUser } from "./users";
+import { User } from "@/types/databaseSchemas";
 
 async function getQuests(userId: string) {
   const response = await prisma.quest.findMany({
@@ -18,7 +21,8 @@ async function createQuest(
   skill: string,
   userId: string
 ) {
-  const expGain = calculateExpGain(difficulty);
+  const userLevel = getUser(userId).level;
+  const expGain = calculateExpGain(difficulty, userLevel);
   const response = await prisma.quest.create({
     data: {
       userId,

@@ -1,7 +1,8 @@
 import prisma from "@/database/prisma";
+import { User } from "@/types/databaseSchemas";
 
-async function getUser(userId: string) {
-  const user = await prisma.user.findUnique({
+async function getUser(userId: string): Promise<User> {
+  const user: User = await prisma.user.findUnique({
     where: {
       id: userId,
     },
@@ -9,3 +10,5 @@ async function getUser(userId: string) {
 
   return user;
 }
+
+export { getUser };

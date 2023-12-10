@@ -1,5 +1,5 @@
 import QuestTile from "./QuestTile";
-import { Quest } from "@/types/questTypes";
+import { Quest } from "@/types/quest";
 import AddQuest from "@/components/AddQuest.tsx";
 import Link from "next/link";
 import {
