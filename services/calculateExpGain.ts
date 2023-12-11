@@ -1,12 +1,19 @@
-export const calculateExpGain = (difficulty: string, userLevel: number) => {
-  switch (difficulty) {
-    case "easy":
-      return 50;
-    case "medium":
-      return 100;
-    case "hard":
-      return 150;
-    default:
-      return 0;
-  }
+const BASE_EXP_MULTIPLIER: number = 10;
+
+export const calculateExpGain = (difficulty: string, level: number) => {
+  const difficultyMultiplier: { easy: number; medium: number; hard: number } = {
+    easy: 1,
+    medium: 1.5,
+    hard: 2,
+  };
+
+  // Calculate base experience points
+  const base_exp: number = level * BASE_EXP_MULTIPLIER;
+
+  // Calculate difficulty multiplier
+  const expGain =
+    base_exp *
+    difficultyMultiplier[difficulty as keyof typeof difficultyMultiplier];
+
+  return expGain;
 };

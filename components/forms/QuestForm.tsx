@@ -6,12 +6,25 @@ import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
 import { Button } from "../ui/button";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/auth";
+import { getUser } from "@/services/users";
+import { User } from "@/types/user";
+import { Quest } from "@/types/quest";
+import { calculateExpGain } from "@/services/calculateExpGain";
 
-type Props = {};
+type Session = {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    image: string;
+  };
+};
 
-export default async function QuestForm({}: Props) {
-  const session = await getServerSession(authOptions);
-  const userId = session?.user?.id as string;
+export default async function QuestForm() {
+  const session: Session | null = await getServerSession(authOptions);
+  const userId: string = session?.user?.id as string;
+  const user: User | null = await getUser(userId);
+  const userLevel: number = user?.level as number;
 
   async function addQuest(data: FormData) {
     "use server";
@@ -23,14 +36,19 @@ export default async function QuestForm({}: Props) {
 
     if (!title || !description || !difficulty || !skill || !category) return;
 
-    await createQuestAction(
+    const expGain: number = calculateExpGain(difficulty, userLevel);
+
+    const quest: Quest = {
+      userId,
       title,
       description,
       difficulty,
       skill,
       category,
-      userId
-    );
+      expGain,
+    };
+
+    await createQuestAction(quest);
   }
 
   return (
