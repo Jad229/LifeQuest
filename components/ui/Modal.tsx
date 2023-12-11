@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 type ModalProps = {
-  title: string;
+  title?: string;
   children?: React.ReactNode;
 };
 

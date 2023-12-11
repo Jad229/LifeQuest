@@ -1,4 +1,9 @@
-import type { NextAuthOptions } from "next-auth";
+import type {
+  NextAuthOptions,
+  User as NextAuthUser,
+  Session as NextAuthSession,
+} from "next-auth";
+
 import GitHubProvider from "next-auth/providers/github";
 import EmailProvider from "next-auth/providers/email";
 import { PrismaAdapter } from "@auth/prisma-adapter";
@@ -23,4 +28,13 @@ export const authOptions = {
       from: process.env.EMAIL_FROM as string,
     }),
   ],
+  callbacks: {
+    session: async ({ session, user }) => {
+      if (session?.user) {
+        //@ts-ignore
+        session.user.id = user.id;
+      }
+      return session;
+    },
+  },
 } satisfies NextAuthOptions;
