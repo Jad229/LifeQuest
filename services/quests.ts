@@ -4,9 +4,10 @@ import { Quest } from "@/types/quest";
 async function getQuests(userId: string) {
   const quests = await prisma.quest.findMany({
     where: {
-      id: userId,
+      userId,
     },
     select: {
+      userId: true,
       id: true,
       title: true,
       skill: true,

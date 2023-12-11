@@ -13,16 +13,20 @@ import {
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+interface ExistingQuest extends Quest {
+  id: string;
+}
+
 interface QuestLogProps {
   title: string;
-  quests: Quest[];
+  quests: ExistingQuest[];
   searchParams?: Record<string, string> | null | undefined;
 }
 
 function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
-  const dailyQuests = quests.filter((quest) => quest.category === "Dailies");
-  const habitQuests = quests.filter((quest) => quest.category === "Habits");
-  const todoQuests = quests.filter((quest) => quest.category === "Todos");
+  const dailyQuests = quests.filter((quest) => quest.category === "dailies");
+  const habitQuests = quests.filter((quest) => quest.category === "habits");
+  const todoQuests = quests.filter((quest) => quest.category === "todos");
 
   return (
     <Card>

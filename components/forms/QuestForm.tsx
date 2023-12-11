@@ -38,6 +38,7 @@ export default async function QuestForm() {
 
     const expGain: number = calculateExpGain(difficulty, userLevel);
 
+    // TODO: figure out why how to get id and userId separately
     const quest: Quest = {
       userId,
       title,
