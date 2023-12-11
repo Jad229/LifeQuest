@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Quest" ADD COLUMN     "expGain" INTEGER NOT NULL DEFAULT 1;

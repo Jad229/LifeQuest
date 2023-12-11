@@ -1,26 +1,32 @@
 import prisma from "@/database/prisma";
-import { Quest } from "@/types/questTypes";
+import { Quest } from "@/types/quest";
 
-async function fetchQuests() {
-  const response = await prisma.quest.findMany();
-  // console.log(response);
-  return response;
+async function getQuests(userId: string) {
+  const quests = await prisma.quest.findMany({
+    where: {
+      userId,
+    },
+    select: {
+      userId: true,
+      id: true,
+      title: true,
+      skill: true,
+      description: true,
+      difficulty: true,
+      category: true,
+      expGain: true,
+    },
+  });
+
+  return quests;
 }
 
-async function createQuest(
-  title: string,
-  description: string,
-  difficulty: string,
-  category: string
-) {
+async function createQuest(quest: Quest) {
   const response = await prisma.quest.create({
     data: {
-      title,
-      description,
-      difficulty,
-      category,
+      ...quest,
     },
   });
   return response;
 }
-export { fetchQuests, createQuest };
+export { getQuests, createQuest };
