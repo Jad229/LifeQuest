@@ -1,6 +1,9 @@
 const BASE_EXP_MULTIPLIER: number = 5;
 
 export const calculateExpGain = (difficulty: string, level: number) => {
+  if (difficulty !== "easy" && difficulty !== "medium" && difficulty !== "hard")
+    return 0;
+
   const difficultyMultiplier: { easy: number; medium: number; hard: number } = {
     easy: 1,
     medium: 1.5,
