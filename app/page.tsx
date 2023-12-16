@@ -24,13 +24,14 @@ type Session = {
 
 export default async function Home({ searchParams }: Props) {
   const session: Session | null = await getServerSession(authOptions);
-  const quests = await getQuests(session?.user?.id as string);
+
   const user = await getUser(session?.user?.id as string);
+  const quests = await getQuests(session?.user?.id as string);
+
   const userExp: number = user?.xp as number;
   const userLevel: number = user?.level as number;
   const expNeeded: number | undefined = (userLevel + userLevel - 1) * 50;
   const progress = calculateProgress(userExp, expNeeded);
-
   return (
     <main className="relative max-w-6xl mx-auto p-5 flex flex-col gap-6">
       {session ? (

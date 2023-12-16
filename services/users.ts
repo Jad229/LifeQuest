@@ -2,6 +2,8 @@ import prisma from "@/database/prisma";
 import { User } from "@/types/user";
 
 async function getUser(userId: string): Promise<User | null> {
+  if (!userId) return null;
+
   const user: User | null = await prisma.user.findUnique({
     where: {
       id: userId,
