@@ -61,11 +61,15 @@ export async function createQuestAction(data: FormData) {
   }
 }
 
-export async function completeQuestAction(questId: string) {
+export async function completeQuestAction(questId: string | null | undefined) {
   try {
     const session: Session | null = await getServerSession(authOptions);
     const userId: string = session?.user?.id ?? "";
     if (!userId) throw new Error("User ID not found");
+
+    // TODO: Check if quest belongs to user
+    // TODO: Add xp to user
+    // TODO: check if its a recurring quest
   } catch (error: any) {
     // Handle the error, e.g., log it or show a user-friendly message
     console.error("Error creating quest:", error.message);

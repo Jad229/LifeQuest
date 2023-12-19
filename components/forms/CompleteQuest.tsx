@@ -1,17 +1,19 @@
 "use client";
-import { FaCheck } from "react-icons/fa";
+
 import { Button } from "../ui/button";
 import { useToast } from "../ui/use-toast";
 import { completeQuestAction } from "@/actions/quests";
+import { Checkbox } from "../ui/checkbox";
 
 type CompleteQuestProps = {
   questId?: string | null | undefined;
 };
 
 export default function CompleteQuest({ questId }: CompleteQuestProps) {
+  const completeQuestWithId = completeQuestAction.bind(null, questId);
   const { toast } = useToast();
   return (
-    <form action={}>
+    <form action={completeQuestWithId}>
       <Button
         onClick={() =>
           toast({
@@ -20,7 +22,7 @@ export default function CompleteQuest({ questId }: CompleteQuestProps) {
           })
         }
       >
-        <FaCheck />
+        <Checkbox id="quest-complete" />
       </Button>
     </form>
   );
