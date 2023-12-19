@@ -1,13 +1,19 @@
 "use client";
 import { FaCheck } from "react-icons/fa";
 import { Button } from "../ui/button";
-import Modal from "../ui/Modal";
-import { useState } from "react";
+import { useToast } from "../ui/use-toast";
 
 export default function CompleteQuest() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { toast } = useToast();
   return (
-    <Button onClick={() => setIsModalOpen(true)}>
+    <Button
+      onClick={() =>
+        toast({
+          title: "Quest Completed!",
+          description: "You have completed the quest!",
+        })
+      }
+    >
       <FaCheck />
     </Button>
   );
