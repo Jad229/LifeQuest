@@ -4,13 +4,18 @@ import QuestDetails from "./QuestDetails";
 interface QuestTileProps {
   title: string;
   description?: string | null | undefined;
+  questId?: string | null | undefined;
 }
 
-function QuestTile({ title, description }: QuestTileProps): JSX.Element {
+function QuestTile({
+  title,
+  description,
+  questId,
+}: QuestTileProps): JSX.Element {
   return (
     <Card className="flex justify-between items-center rounded-md p-4">
       <QuestDetails description={description}>{title}</QuestDetails>
-      <CompleteQuest />
+      <CompleteQuest questId={questId} />
     </Card>
   );
 }

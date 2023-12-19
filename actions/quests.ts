@@ -60,3 +60,15 @@ export async function createQuestAction(data: FormData) {
     throw error;
   }
 }
+
+export async function completeQuestAction(questId: string) {
+  try {
+    const session: Session | null = await getServerSession(authOptions);
+    const userId: string = session?.user?.id ?? "";
+    if (!userId) throw new Error("User ID not found");
+  } catch (error: any) {
+    // Handle the error, e.g., log it or show a user-friendly message
+    console.error("Error creating quest:", error.message);
+    // Optionally rethrow the error for higher level handling
+  }
+}
