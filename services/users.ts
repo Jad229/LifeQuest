@@ -62,4 +62,4 @@ async function updateUserLevel(user: User) {
 }
 //TODO: Create a function to update user inventory
 
-export { getUser, updateUserXp };
+export { getUser, updateUserXp, updateUserLevel };
