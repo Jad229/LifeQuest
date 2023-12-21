@@ -42,6 +42,24 @@ async function updateUserXp(user: User, expGain: number) {
 }
 //TODO: Create a function to update user xp
 //TODO: Create a function to update user level
+async function updateUserLevel(user: User) {
+  //TODO: review this logic
+  const currentLevel: number = user.level ?? 0;
+  const newLevel: number = currentLevel + 1;
+
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      level: newLevel,
+    },
+  });
+
+  if (!updatedUser) throw new Error("User could not be updated");
+
+  return updatedUser;
+}
 //TODO: Create a function to update user inventory
 
 export { getUser, updateUserXp };
