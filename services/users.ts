@@ -1,5 +1,6 @@
 import prisma from "@/database/prisma";
 import { User } from "@/types/user";
+import calculateExpNeeded from "./calculateExpNeeded";
 
 async function getUser(userId: string): Promise<User | null> {
   if (!userId) return null;
@@ -43,6 +44,11 @@ async function updateUserXp(user: User, expGain: number) {
 //TODO: Create a function to update user xp
 //TODO: Create a function to update user level
 async function updateUserLevel(user: User) {
+  const ExpNeeded: number = calculateExpNeeded(user.level);
+
+  //TODO: Check if user has enough xp to level up
+  if (user.xp < ExpNeeded) return 0;
+
   //TODO: review this logic
   const currentLevel: number = user.level ?? 0;
   const newLevel: number = currentLevel + 1;
