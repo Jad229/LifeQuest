@@ -1,14 +1,30 @@
 "use client";
-import { FaCheck } from "react-icons/fa";
-import { Button } from "../ui/button";
-import Modal from "../ui/Modal";
-import { useState } from "react";
 
-export default function CompleteQuest() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+import { useToast } from "../ui/use-toast";
+import { completeQuestAction } from "@/actions/quests";
+import { Checkbox } from "../ui/checkbox";
+
+type CompleteQuestProps = {
+  questId?: string | null | undefined;
+};
+
+export default function CompleteQuest({ questId }: CompleteQuestProps) {
+  const completeQuestWithId = completeQuestAction.bind(null, questId);
+  const { toast } = useToast();
   return (
-    <Button onClick={() => setIsModalOpen(true)}>
-      <FaCheck />
-    </Button>
+    <form
+      className="flex justify-center items-center"
+      action={completeQuestWithId}
+    >
+      <Checkbox
+        onClick={() =>
+          toast({
+            title: "Quest Completed!",
+            description: "You have completed the quest!",
+          })
+        }
+        id="quest-complete"
+      />
+    </form>
   );
 }

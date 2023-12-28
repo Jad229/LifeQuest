@@ -20,6 +20,15 @@ async function getQuests(userId: string) {
 
   return quests;
 }
+async function getQuest(questId: string | null | undefined) {
+  if (!questId) throw new Error("Quest not found");
+  const quest = await prisma.quest.findUnique({
+    where: {
+      id: questId,
+    },
+  });
+  return quest;
+}
 
 async function createQuest(quest: Quest) {
   const response = await prisma.quest.create({
@@ -29,4 +38,4 @@ async function createQuest(quest: Quest) {
   });
   return response;
 }
-export { getQuests, createQuest };
+export { getQuests, createQuest, getQuest };

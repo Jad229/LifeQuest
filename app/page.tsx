@@ -8,6 +8,7 @@ import { authOptions } from "../utils/auth";
 import Unauthorized from "@/features/Authentication/Unauthorized";
 import { calculateProgress } from "@/services/calculateProgress";
 import { getUser } from "@/services/users";
+import calculateExpNeeded from "@/services/calculateExpNeeded";
 
 type Props = {
   searchParams: Record<string, string> | null | undefined;
@@ -30,7 +31,7 @@ export default async function Home({ searchParams }: Props) {
 
   const userExp: number = user?.xp as number;
   const userLevel: number = user?.level as number;
-  const expNeeded: number | undefined = (userLevel + userLevel - 1) * 50;
+  const expNeeded: number | undefined = calculateExpNeeded(userLevel);
   const progress = calculateProgress(userExp, expNeeded);
   return (
     <main className="relative max-w-6xl mx-auto p-5 flex flex-col gap-6">

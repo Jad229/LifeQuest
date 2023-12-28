@@ -1,8 +1,8 @@
 "use server";
 
 import { calculateExpGain } from "@/services/calculateExpGain";
-import { createQuest } from "@/services/quests";
-import { getUser } from "@/services/users";
+import { createQuest, getQuest } from "@/services/quests";
+import { getUser, updateUserXp } from "@/services/users";
 import { Quest } from "@/types/quest";
 import { User } from "@/types/user";
 import { authOptions } from "@/utils/auth";
@@ -58,5 +58,30 @@ export async function createQuestAction(data: FormData) {
     console.error("Error creating quest:", error.message);
     // Optionally rethrow the error for higher level handling
     throw error;
+  }
+}
+
+export async function completeQuestAction(questId: string | null | undefined) {
+  try {
+    const session: Session | null = await getServerSession(authOptions);
+    const userId: string = session?.user?.id ?? "";
+
+    const user: User | null = await getUser(userId);
+    if (!user) throw new Error("User not found");
+
+    const quest: Quest | null = await getQuest(questId);
+    if (quest?.userId !== userId)
+      throw new Error("Quest does not belong to user");
+
+    // TODO: Add xp to user
+    const expGain: number = quest.expGain;
+
+    const updatedUser = await updateUserXp(user, expGain);
+
+    // TODO: check if its a recurring quest
+  } catch (error: any) {
+    // Handle the error, e.g., log it or show a user-friendly message
+    console.error("Error creating quest:", error.message);
+    // Optionally rethrow the error for higher level handling
   }
 }

@@ -50,6 +50,7 @@ function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
             {dailyQuests.map((quest) => (
               <QuestTile
                 key={quest.id}
+                questId={quest.id}
                 title={quest.title}
                 description={quest.description}
               />
@@ -59,6 +60,7 @@ function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
             {habitQuests.map((quest) => (
               <QuestTile
                 key={quest.id}
+                questId={quest.id}
                 title={quest.title}
                 description={quest.description}
               />
@@ -68,6 +70,7 @@ function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
             {todoQuests.map((quest) => (
               <QuestTile
                 key={quest.id}
+                questId={quest.id}
                 title={quest.title}
                 description={quest.description}
               />
