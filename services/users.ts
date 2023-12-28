@@ -1,5 +1,6 @@
 import prisma from "@/database/prisma";
 import { User } from "@/types/user";
+import calculateExpNeeded from "./calculateExpNeeded";
 
 async function getUser(userId: string): Promise<User | null> {
   if (!userId) return null;
@@ -22,4 +23,49 @@ async function getUser(userId: string): Promise<User | null> {
   return user;
 }
 
-export { getUser };
+async function updateUserXp(user: User, expGain: number) {
+  const currentXp: number = user.xp ?? 0;
+  const newXp: number = currentXp + expGain;
+
+  //TODO: Check if user has leveled up after adding exp
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      xp: newXp,
+    },
+  });
+
+  if (!updatedUser) throw new Error("User could not be updated");
+
+  return updatedUser;
+}
+//TODO: Create a function to update user xp
+//TODO: Create a function to update user level
+async function updateUserLevel(user: User) {
+  const ExpNeeded: number = calculateExpNeeded(user.level);
+
+  //TODO: Check if user has enough xp to level up
+  if (user.xp < ExpNeeded) return 0;
+
+  //TODO: review this logic
+  const currentLevel: number = user.level ?? 0;
+  const newLevel: number = currentLevel + 1;
+
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      level: newLevel,
+    },
+  });
+
+  if (!updatedUser) throw new Error("User could not be updated");
+
+  return updatedUser;
+}
+//TODO: Create a function to update user inventory
+
+export { getUser, updateUserXp, updateUserLevel };
