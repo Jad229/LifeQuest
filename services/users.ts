@@ -23,11 +23,14 @@ async function getUser(userId: string): Promise<User | null> {
   return user;
 }
 
+//function to update user xp
 async function updateUserXp(user: User, expGain: number) {
   const currentXp: number = user.xp ?? 0;
   const newXp: number = currentXp + expGain;
 
-  //TODO: Check if user has leveled up after adding exp
+  //Check if user has leveled up after adding exp
+  updateUserLevel(user);
+
   const updatedUser = await prisma.user.update({
     where: {
       id: user.id,
@@ -41,15 +44,14 @@ async function updateUserXp(user: User, expGain: number) {
 
   return updatedUser;
 }
-//TODO: Create a function to update user xp
-//TODO: Create a function to update user level
+
+//function to update user level
 async function updateUserLevel(user: User) {
-  const ExpNeeded: number = calculateExpNeeded(user.level);
+  const xpNeeded: number = calculateExpNeeded(user.level);
 
-  //TODO: Check if user has enough xp to level up
-  if (user.xp < ExpNeeded) return 0;
+  //Check if user has enough xp to level up
+  if (user.xp < xpNeeded) return user;
 
-  //TODO: review this logic
   const currentLevel: number = user.level ?? 0;
   const newLevel: number = currentLevel + 1;
 
@@ -66,6 +68,7 @@ async function updateUserLevel(user: User) {
 
   return updatedUser;
 }
+
 //TODO: Create a function to update user inventory
 
 export { getUser, updateUserXp, updateUserLevel };
