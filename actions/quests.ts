@@ -80,7 +80,8 @@ export async function completeQuestAction(questId: string | null | undefined) {
 
     // TODO: check if its a recurring quest
 
-    console.log(updatedUser);
+    //We revalidate path to rerender progress
+    revalidatePath("/");
   } catch (error: any) {
     // Handle the error, e.g., log it or show a user-friendly message
     console.error("Error creating quest:", error.message);

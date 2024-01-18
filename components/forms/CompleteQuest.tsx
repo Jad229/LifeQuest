@@ -2,9 +2,9 @@
 
 import { useToast } from "../ui/use-toast";
 import { completeQuestAction } from "@/actions/quests";
-import { useState } from "react";
 import { Button } from "../ui/button";
 import { FaPlus } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 type CompleteQuestProps = {
   questId?: string | null | undefined;
@@ -20,12 +20,12 @@ export default function CompleteQuest({ questId }: CompleteQuestProps) {
       action={completeQuestWithId}
     >
       <Button
-        onClick={() =>
+        onClick={() => {
           toast({
             title: "Quest Completed!",
             description: "You have completed the quest!",
-          })
-        }
+          });
+        }}
         id="quest-complete"
         variant="outline"
         size="icon"

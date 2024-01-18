@@ -36,9 +36,9 @@ export default async function Home({ searchParams }: Props) {
   return (
     <main className="relative max-w-6xl mx-auto p-5 flex flex-col gap-6">
       {session ? (
-        <div>
+        <div className="flex flex-col gap-12">
           <div className="flex justify-between items-center">
-            <h2 className="font-bold text-xl">
+            <h2 className="font-bold text-3xl">
               Welcome, {session?.user?.name}
             </h2>
             <Avatar>
@@ -46,6 +46,7 @@ export default async function Home({ searchParams }: Props) {
               <AvatarFallback>Avatar</AvatarFallback>
             </Avatar>
           </div>
+          <div></div>
           <Progress value={progress} />
           <QuestLog
             title="Quests"
