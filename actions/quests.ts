@@ -79,6 +79,9 @@ export async function completeQuestAction(questId: string | null | undefined) {
     const updatedUser = await updateUserXp(user, expGain);
 
     // TODO: check if its a recurring quest
+
+    //We revalidate path to rerender progress
+    revalidatePath("/");
   } catch (error: any) {
     // Handle the error, e.g., log it or show a user-friendly message
     console.error("Error creating quest:", error.message);
