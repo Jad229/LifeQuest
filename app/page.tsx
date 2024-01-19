@@ -38,7 +38,7 @@ export default async function Home({ searchParams }: Props) {
       {session ? (
         <div className="flex flex-col gap-12">
           <div className="flex justify-between items-center">
-            <h2 className="font-bold text-3xl">
+            <h2 className="font-bold text-4xl">
               Welcome, {session?.user?.name}
             </h2>
             <Avatar>
@@ -46,8 +46,14 @@ export default async function Home({ searchParams }: Props) {
               <AvatarFallback>Avatar</AvatarFallback>
             </Avatar>
           </div>
-          <div></div>
-          <Progress value={progress} />
+          <div className="flex justify-between items-center">
+            <h2 className="font-bold text-xl">Level: {user?.level}</h2>
+            <Progress className="w-5/6" value={progress} />
+            <p className="text-center">
+              {userExp} / {expNeeded}
+            </p>
+          </div>
+
           <QuestLog
             title="Quests"
             quests={quests}
