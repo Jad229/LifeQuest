@@ -9,6 +9,7 @@ import Unauthorized from "@/features/Authentication/Unauthorized";
 import { calculateProgress } from "@/services/calculateProgress";
 import { getUser } from "@/services/users";
 import calculateExpNeeded from "@/services/calculateExpNeeded";
+import Link from "next/link";
 
 type Props = {
   searchParams: Record<string, string> | null | undefined;
@@ -41,10 +42,12 @@ export default async function Home({ searchParams }: Props) {
             <h2 className="font-bold text-4xl">
               Welcome, {session?.user?.name}
             </h2>
-            <Avatar>
-              <AvatarImage src={session?.user?.image as string} />
-              <AvatarFallback>Avatar</AvatarFallback>
-            </Avatar>
+            <Link href="/profile">
+              <Avatar>
+                <AvatarImage src={session?.user?.image as string} />
+                <AvatarFallback>Avatar</AvatarFallback>
+              </Avatar>
+            </Link>
           </div>
           <div className="flex justify-between items-center">
             <h2 className="font-bold text-xl">Level: {user?.level}</h2>
