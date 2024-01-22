@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
+import Dropdown from "./ui/dropdown";
 
 type Props = {};
 
@@ -12,10 +13,13 @@ export default async function Navbar({}: Props) {
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-center p-4 mb-5">
       <ul className="flex gap-10 w-full max-w-6xl items-center justify-between">
-        <li className="flex gap-3">
-          <Link href="/inventory">Inventory</Link>
-          <Link href="/market">Market</Link>
-          <Link href="/party">Party</Link>
+        <li className="flex items-center gap-5">
+          <Button variant="ghost" className="">
+            <Link className="font-bold text-2xl" href="/">
+              LifeQuest
+            </Link>
+          </Button>
+          <Dropdown />
         </li>
         <li>
           {session ? (
