@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../utils/auth";
-import Unauthorized from "@/features/Authentication/Unauthorized";
+import Unauthorized from "@/features/Authentication/Landing";
 import { calculateProgress } from "@/services/calculateProgress";
 import { getUser } from "@/services/users";
 import calculateExpNeeded from "@/services/calculateExpNeeded";
