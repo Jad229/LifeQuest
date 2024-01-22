@@ -1,6 +1,12 @@
 import SignInForm from "./SignInForm";
 import SigninWithGithub from "./SigninWithGithub";
-
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 export default function Landing() {
   return (
     <>
@@ -13,9 +19,21 @@ export default function Landing() {
           </p>
         </div>
         <div className="flex flex-col gap-4 w-full">
-          <SignInForm />
-          <hr />
-          <SigninWithGithub />
+          <Card>
+            <CardHeader>
+              <CardTitle>Sign in to Get Started!</CardTitle>
+              <CardDescription>
+                Ready to become the best version of yourself?
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-4">
+                <SignInForm />
+                <hr />
+                <SigninWithGithub />
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
     </>

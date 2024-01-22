@@ -35,7 +35,7 @@ export default async function Home({ searchParams }: Props) {
   const expNeeded: number | undefined = calculateExpNeeded(userLevel);
   const progress = calculateProgress(userExp, expNeeded);
   return (
-    <main className="relative max-w-6xl mx-auto p-5 flex flex-col gap-6">
+    <main className="relative max-w-6xl mx-auto flex flex-col gap-6">
       {session ? (
         <div className="flex flex-col gap-12">
           <div className="flex justify-between items-center">
