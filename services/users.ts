@@ -28,17 +28,26 @@ async function updateUserXp(user: User, expGain: number) {
   const currentXp: number = user.xp ?? 0;
   const newXp: number = currentXp + expGain;
 
-  //Check if user has leveled up after adding exp
-  updateUserLevel(user);
-
-  const updatedUser = await prisma.user.update({
+  const updatedUser: User = await prisma.user.update({
     where: {
       id: user.id,
     },
     data: {
       xp: newXp,
     },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      image: true,
+      quests: true,
+      level: true,
+      xp: true,
+    },
   });
+
+  //Check if user has leveled up after adding exp
+  updateUserLevel(updatedUser);
 
   if (!updatedUser) throw new Error("User could not be updated");
 
@@ -52,6 +61,8 @@ async function updateUserLevel(user: User) {
   //Check if user has enough xp to level up
   if (user.xp < xpNeeded) return user;
 
+  const newXp: number = user.xp - xpNeeded;
+
   const currentLevel: number = user.level ?? 0;
   const newLevel: number = currentLevel + 1;
 
@@ -61,6 +72,7 @@ async function updateUserLevel(user: User) {
     },
     data: {
       level: newLevel,
+      xp: newXp,
     },
   });
 

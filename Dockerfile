@@ -1,23 +1,25 @@
-# Use official Node.js image as the base image
+# grabs base image using latest node version
 FROM node:latest
 
-# Set working directory inside the container
-WORKDIR /lifequest
+# sets the working directory to /app
+WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# copies the current directory package.json and package-lock.json to /app
+COPY package*.json package-lock.json ./
 
-# Install dependencies
+# Install Prisma globally
+RUN npm install -g prisma
+
+# installs all dependencies
 RUN npm install
 
-# Copy the rest of the application files to the working directory
+# Copy Prisma schema and generate Prisma client
+COPY prisma ./prisma
+RUN prisma generate
+
+# copies the current directory to /app
 COPY . .
 
-# Build the Next.js app
-RUN npm run build
+EXPOSE 3000
 
-# Expose the port Next.js runs on
-EXPOSE 3001
-
-# Set the command to start the Next.js app
-CMD ["npm", "start"]
+CMD npm run dev
