@@ -38,4 +38,7 @@ async function createQuest(quest: Quest) {
   });
   return response;
 }
+
+//TODO: create a deleteQuest function
+
 export { getQuests, createQuest, getQuest };

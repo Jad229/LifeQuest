@@ -1,18 +1,10 @@
-import Image from "next/image";
-import React from "react";
+import { getUserStats } from "@/services/stats";
 
-function Profile() {
+export default async function Profile() {
   return (
     <div>
-      Profile
-      <Image
-        src="./JDpixels.svg"
-        alt="pixel avatar"
-        width={10000}
-        height={10000}
-      />
+      <h1>Name: Username</h1>
+      <h2>Character Stats</h2>
     </div>
   );
 }
-
-export default Profile;
