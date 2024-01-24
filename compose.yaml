@@ -1,0 +1,19 @@
+# docker-compose.yaml
+
+version: '3.8' # Use the latest version of Docker Compose syntax
+
+# Define services for your app
+services:
+  # Service for your Next.js app
+  app:
+    image: lifequest-nextjs-dev
+    build: .
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  
