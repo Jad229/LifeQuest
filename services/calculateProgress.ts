@@ -2,6 +2,7 @@ export function calculateProgress(
   currentExperience: number,
   experienceNeededForNextLevel: number
 ) {
+  if (currentExperience >= experienceNeededForNextLevel) return 0;
   if (currentExperience === 0 && experienceNeededForNextLevel === 0) return 100;
 
   let progress: number =
