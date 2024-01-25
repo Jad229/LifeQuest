@@ -30,7 +30,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className="max-w-6xl mx-auto">
         <ThemeProvider attribute="dark" defaultTheme="system">
           {session && <Navbar />}
           {children}

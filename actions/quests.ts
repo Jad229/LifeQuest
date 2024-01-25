@@ -8,15 +8,7 @@ import { User } from "@/types/user";
 import { authOptions } from "@/utils/auth";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
-
-type Session = {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    image: string;
-  };
-};
+import { Session } from "@/types/session";
 
 export async function createQuestAction(data: FormData) {
   try {
