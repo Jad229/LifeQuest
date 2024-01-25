@@ -2,10 +2,30 @@ import { createQuestAction } from "@/actions/quests";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 import { Button } from "../ui/button";
+import { Session } from "@/types/session";
+import { authOptions } from "@/utils/auth";
+import { getUserStats } from "@/services/stats";
+import { getServerSession } from "next-auth";
 
 export default async function QuestForm() {
+  const session: Session | null = await getServerSession(authOptions);
+  const stats = await getUserStats(session?.user?.id as string);
+
+  const skillOptions = stats.map((stat) => {
+    return (
+      <SelectItem key={stat.id} value={stat.name}>
+        {stat.name}
+      </SelectItem>
+    );
+  });
   return (
     <form
       action={createQuestAction}
@@ -26,7 +46,9 @@ export default async function QuestForm() {
       <div className="form-group ">
         <Label>Difficulty</Label>
         <Select name="difficulty">
-          <SelectTrigger>-------</SelectTrigger>
+          <SelectTrigger>
+            <SelectValue placeholder="Select a difficulty" />
+          </SelectTrigger>
           <SelectContent>
             <SelectItem value="hard">Hard</SelectItem>
             <SelectItem value="medium">Medium</SelectItem>
@@ -37,21 +59,18 @@ export default async function QuestForm() {
       <div className="form-group ">
         <Label>Related Skill</Label>
         <Select name="skill">
-          <SelectTrigger>-------</SelectTrigger>
-          <SelectContent>
-            <SelectItem value="strength">Strength</SelectItem>
-            <SelectItem value="wisdom">Wisdom</SelectItem>
-            <SelectItem value="agility">Agility</SelectItem>
-            <SelectItem value="charisma">Charisma</SelectItem>
-            <SelectItem value="cooking">Cooking</SelectItem>
-            <SelectItem value="coding">Coding</SelectItem>
-          </SelectContent>
+          <SelectTrigger>
+            <SelectValue placeholder="Select a skill" />
+          </SelectTrigger>
+          <SelectContent>{skillOptions}</SelectContent>
         </Select>
       </div>
       <div className="form-group ">
         <Label>Quest Type</Label>
         <Select name="category">
-          <SelectTrigger>-------</SelectTrigger>
+          <SelectTrigger>
+            <SelectValue placeholder="Select a category" />
+          </SelectTrigger>
           <SelectContent>
             <SelectItem value="habits">Habits</SelectItem>
             <SelectItem value="todos">Todos</SelectItem>
