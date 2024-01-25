@@ -8,8 +8,8 @@ describe("calculateProgress", () => {
   });
 
   it("calculates progress when current experience is equal to experience needed for next level", () => {
-    expect(calculateProgress(1000, 1000)).toBe(100); // 1000 / 1000 * 100 = 100
-    expect(calculateProgress(200, 200)).toBe(100); // 200 / 200 * 100 = 100
+    expect(calculateProgress(1000, 1000)).toBe(0); // 1000 / 1000 * 100 = 100 should get reset to 0
+    expect(calculateProgress(200, 200)).toBe(0); // 200 / 200 * 100 = 100 should get reset to 0
   });
 
   it("ensures progress does not exceed 100%", () => {
