@@ -1,6 +1,6 @@
 import QuestTile from "./QuestTile";
 import { Quest } from "@/types/quest";
-import AddQuest from "@/components/AddQuest.tsx";
+import AddQuest from "@/components/AddQuest";
 import Link from "next/link";
 import {
   Card,
