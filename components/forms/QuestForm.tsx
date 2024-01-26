@@ -21,7 +21,7 @@ export default async function QuestForm() {
 
   const skillOptions = stats.map((stat) => {
     return (
-      <SelectItem key={stat.id} value={stat.name}>
+      <SelectItem key={stat.id} value={stat.id}>
         {stat.name}
       </SelectItem>
     );

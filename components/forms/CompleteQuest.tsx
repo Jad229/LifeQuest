@@ -4,7 +4,6 @@ import { useToast } from "../ui/use-toast";
 import { completeQuestAction } from "@/actions/quests";
 import { Button } from "../ui/button";
 import { FaPlus } from "react-icons/fa";
-import { useRouter } from "next/navigation";
 
 type CompleteQuestProps = {
   questId?: string | null | undefined;
