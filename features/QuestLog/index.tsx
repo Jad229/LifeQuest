@@ -33,7 +33,7 @@ function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
       <CardHeader>
         <CardTitle className="text-2xl mb-5">{title}</CardTitle>
         <CardDescription>
-          Complete your quest to gain experience!
+          Complete your quests to gain experience!
         </CardDescription>
 
         <AddQuest searchParams={searchParams} />

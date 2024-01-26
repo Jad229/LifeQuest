@@ -18,7 +18,7 @@ describe("calculateProgress", () => {
   });
 
   it("handles edge cases and zero division", () => {
-    expect(calculateProgress(0, 0)).toBe(100); // 0 / 0 * 100 = NaN (Limited to 100)
+    expect(calculateProgress(0, 0)).toBe(0); // 0 / 0 * 100 = NaN (Limited to 100)
     expect(calculateProgress(0, 100)).toBe(0); // 0 / 100 * 100 = 0
   });
 });
