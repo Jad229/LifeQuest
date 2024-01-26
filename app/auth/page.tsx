@@ -20,7 +20,7 @@ export default async function AuthRoute() {
   }
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center">
+    <div className="h-screen flex items-center justify-center">
       <Card>
         <CardHeader>
           <CardTitle>Please sign in</CardTitle>
