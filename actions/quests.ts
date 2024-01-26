@@ -9,6 +9,7 @@ import { authOptions } from "@/utils/auth";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { Session } from "@/types/session";
+import { updateStat } from "@/services/stats";
 
 export async function createQuestAction(data: FormData) {
   try {
@@ -69,7 +70,7 @@ export async function completeQuestAction(questId: string | null | undefined) {
     const expGain: number = quest.expGain;
 
     const updatedUser = await updateUserXp(user, expGain);
-
+    const updatedStat = await updateStat(quest.skill, quest.difficulty);
     // TODO: check if its a recurring quest
 
     //We revalidate path to rerender progress
