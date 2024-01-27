@@ -1,3 +1,4 @@
+"use client";
 import { createQuestAction } from "@/actions/quests";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -10,14 +11,15 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Button } from "../ui/button";
-import { Session } from "@/types/session";
-import { authOptions } from "@/utils/auth";
-import { getUserStats } from "@/services/stats";
-import { getServerSession } from "next-auth";
+import { useFormState } from "react-dom";
+import { Stat } from "@/types/stat";
+import SubmitButton from "./SubmitButton";
 
-export default async function QuestForm() {
-  const session: Session | null = await getServerSession(authOptions);
-  const stats = await getUserStats(session?.user?.id as string);
+type QuestFormProps = {
+  stats: Stat[];
+};
+export default function QuestForm({ stats }: QuestFormProps) {
+  const [state, formAction] = useFormState(createQuestAction, null);
 
   const skillOptions = stats.map((stat) => {
     return (
@@ -26,9 +28,10 @@ export default async function QuestForm() {
       </SelectItem>
     );
   });
+
   return (
     <form
-      action={createQuestAction}
+      action={formAction}
       className="flex flex-col gap-2 py-6 mx-auto bg-white text-black"
     >
       <div className="form-group ">
@@ -78,9 +81,7 @@ export default async function QuestForm() {
           </SelectContent>
         </Select>
       </div>
-      <Button type="submit" className="btn text-black bg-green-500">
-        Submit
-      </Button>
+      <SubmitButton />
     </form>
   );
 }

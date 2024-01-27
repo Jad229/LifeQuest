@@ -11,7 +11,7 @@ import { revalidatePath } from "next/cache";
 import { Session } from "@/types/session";
 import { updateStat } from "@/services/stats";
 
-export async function createQuestAction(data: FormData) {
+export async function createQuestAction(state: any, data: FormData) {
   try {
     const session: Session | null = await getServerSession(authOptions);
     const userId: string = session?.user?.id ?? "";
@@ -48,9 +48,8 @@ export async function createQuestAction(data: FormData) {
     revalidatePath("/");
   } catch (error: any) {
     // Handle the error, e.g., log it or show a user-friendly message
-    console.error("Error creating quest:", error.message);
+    return { error: error.message };
     // Optionally rethrow the error for higher level handling
-    throw error;
   }
 }
 
