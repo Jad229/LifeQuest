@@ -29,7 +29,7 @@ export async function createQuestAction(state: any, data: FormData) {
     const category: string = data.get("category") as string;
 
     if (!title || !description || !difficulty || !skill || !category) {
-      throw new Error("Incomplete quest data");
+      throw new Error("Please Complete All Fields");
     }
 
     const expGain: number = calculateExpGain(difficulty, userLevel);
@@ -45,10 +45,16 @@ export async function createQuestAction(state: any, data: FormData) {
     };
 
     await createQuest(quest);
+
     revalidatePath("/");
+
+    return { success: true, message: "Quest created successfully" };
   } catch (error: any) {
     // Handle the error, e.g., log it or show a user-friendly message
-    return { error: error.message };
+    return {
+      success: false,
+      message: error.message,
+    };
     // Optionally rethrow the error for higher level handling
   }
 }

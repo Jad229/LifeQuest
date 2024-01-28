@@ -1,5 +1,5 @@
 import Link from "next/link";
-import QuestForm from "../forms/QuestForm";
+import QuestForm from "../forms/QuestForm/QuestForm";
 import Modal from "@/components/ui/Modal";
 import { Button } from "@/components/ui/button";
 import { Session } from "@/types/session";
