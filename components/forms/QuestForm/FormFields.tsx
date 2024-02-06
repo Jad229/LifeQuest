@@ -15,7 +15,7 @@ export default function FormFields({ stats }: { stats: Stat[] }) {
   const { pending } = useFormStatus();
   const skillOptions = stats.map((stat) => {
     return (
-      <SelectItem key={stat.id} value={stat.id}>
+      <SelectItem key={stat.id} value={stat.id as string}>
         {stat.name}
       </SelectItem>
     );
