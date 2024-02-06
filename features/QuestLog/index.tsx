@@ -1,12 +1,11 @@
 import QuestTile from "./QuestTile";
 import { Quest } from "@/types/quest";
 import AddQuest from "@/components/AddQuest";
-import Link from "next/link";
+
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";

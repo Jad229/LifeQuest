@@ -1,4 +1,8 @@
 export type Stat = {
-  userId: string;
+  id: string;
   name: string;
+  value: number;
+  userId: string;
+  createdAt: Date;
+  updatedAt: Date;
 };

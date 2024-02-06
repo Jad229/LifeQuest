@@ -20,6 +20,7 @@ export default async function Home({ searchParams }: Props) {
   const session: Session | null = await getServerSession(authOptions);
 
   const user = await getUser(session?.user?.id as string);
+
   const quests = await getQuests(session?.user?.id as string);
 
   const userExp: number = user?.xp as number;
