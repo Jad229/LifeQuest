@@ -11,7 +11,7 @@ import { revalidatePath } from "next/cache";
 import { Session } from "@/types/session";
 import { updateStat } from "@/services/stats";
 
-export async function createQuestAction(data: FormData) {
+export async function createQuestAction(state: any, data: FormData) {
   try {
     const session: Session | null = await getServerSession(authOptions);
     const userId: string = session?.user?.id ?? "";
@@ -29,7 +29,7 @@ export async function createQuestAction(data: FormData) {
     const category: string = data.get("category") as string;
 
     if (!title || !description || !difficulty || !skill || !category) {
-      throw new Error("Incomplete quest data");
+      throw new Error("Please Complete All Fields");
     }
 
     const expGain: number = calculateExpGain(difficulty, userLevel);
@@ -45,12 +45,17 @@ export async function createQuestAction(data: FormData) {
     };
 
     await createQuest(quest);
+
     revalidatePath("/");
+
+    return { success: true, message: "Quest created successfully" };
   } catch (error: any) {
     // Handle the error, e.g., log it or show a user-friendly message
-    console.error("Error creating quest:", error.message);
+    return {
+      success: false,
+      message: error.message,
+    };
     // Optionally rethrow the error for higher level handling
-    throw error;
   }
 }
 
