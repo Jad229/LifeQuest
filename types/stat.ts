@@ -1,8 +1,6 @@
 export type Stat = {
-  id: string;
+  id?: string | undefined;
+  value?: number;
   name: string;
-  value: number;
   userId: string;
-  createdAt: Date;
-  updatedAt: Date;
 };

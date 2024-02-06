@@ -6,6 +6,12 @@ async function getUserStats(userId: string) {
     where: {
       userId: userId,
     },
+    select: {
+      id: true,
+      userId: true,
+      name: true,
+      value: true,
+    },
   });
 
   return stats;
