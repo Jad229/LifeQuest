@@ -1,5 +1,5 @@
 export type Stat = {
-  id?: string;
+  id?: string | undefined;
   value?: number;
   name: string;
   userId: string;
