@@ -29,22 +29,24 @@ function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
 
   return (
     <Card className="flex-auto w-full">
-      <CardHeader className="flex flex-col justify-center">
-        <CardTitle className="text-2xl mb-5">{title}</CardTitle>
-        <CardDescription>
+      <CardHeader className="gap-2">
+        <CardTitle className="font-bold text-3xl mb-5 text-center">
+          {title}
+        </CardTitle>
+        <CardDescription className="text-center">
           Complete your quests to gain experience!
         </CardDescription>
 
         <AddQuest searchParams={searchParams} />
         <hr className="my-3 opacity-30" />
       </CardHeader>
-      <CardContent className="border-2 ">
+      <CardContent className="">
         <Tabs className="flex flex-col justify-center items-center gap-3">
           <TabsList className="flex gap-10 w-full ">
             <TabsTrigger className="font-bold text-lg " value="dailies">
               Dailies
             </TabsTrigger>
-            <TabsTrigger className="font-bold text-lg  " value="habits">
+            <TabsTrigger className="font-bold text-lg " value="habits">
               Habits
             </TabsTrigger>
             <TabsTrigger className="font-bold text-lg " value="todos">

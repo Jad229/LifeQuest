@@ -5,6 +5,12 @@ import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/auth";
+import { Squada_One } from "next/font/google";
+
+const SquadaOne = Squada_One({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "LifeQuest",
@@ -30,7 +36,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="max-w-6xl mx-auto">
+      <body className={`${SquadaOne.className} max-w-6xl mx-auto p-4`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
