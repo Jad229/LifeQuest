@@ -6,7 +6,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/auth";
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -36,6 +35,11 @@ const AddQuest = async ({ searchParams }: Props) => {
           <AlertDialogDescription>
             <QuestForm stats={stats} />
           </AlertDialogDescription>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="disabled:cursor-not-allowed mt-5 btn w-11/12 mx-auto transition-all focus:scale-110 hover:scale-110 active:scale-105">
+              Close
+            </AlertDialogCancel>
+          </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
     </div>
