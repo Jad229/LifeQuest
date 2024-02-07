@@ -26,8 +26,8 @@ export default function FormFields({ stats }: { stats: Stat[] }) {
       {pending ? (
         <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-black"></div>
       ) : (
-        <div className="flex flex-col flex-grow gap-3">
-          <div className="form-group ">
+        <div className="flex flex-col flex-grow gap-3 ">
+          <div>
             <Label>Title</Label>
             <Input
               name="title"
@@ -36,7 +36,7 @@ export default function FormFields({ stats }: { stats: Stat[] }) {
               placeholder="Add a title"
             />
           </div>
-          <div className="form-group ">
+          <div>
             <Label>Description</Label>
             <Textarea
               name="description"
@@ -44,7 +44,7 @@ export default function FormFields({ stats }: { stats: Stat[] }) {
               placeholder="Add a description"
             />
           </div>
-          <div className="form-group ">
+          <div>
             <Label>Difficulty</Label>
             <Select name="difficulty">
               <SelectTrigger>
@@ -57,7 +57,7 @@ export default function FormFields({ stats }: { stats: Stat[] }) {
               </SelectContent>
             </Select>
           </div>
-          <div className="form-group ">
+          <div>
             <Label>Related Skill</Label>
             <Select name="skill">
               <SelectTrigger>
@@ -66,7 +66,7 @@ export default function FormFields({ stats }: { stats: Stat[] }) {
               <SelectContent>{skillOptions}</SelectContent>
             </Select>
           </div>
-          <div className="form-group ">
+          <div>
             <Label>Quest Type</Label>
             <Select name="category">
               <SelectTrigger>

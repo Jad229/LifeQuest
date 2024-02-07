@@ -14,7 +14,9 @@ function QuestTile({
 }: QuestTileProps): JSX.Element {
   return (
     <Card className="flex justify-between items-center rounded-md p-4">
-      <QuestDetails description={description}>{title}</QuestDetails>
+      <QuestDetails title={title} description={description}>
+        {title}
+      </QuestDetails>
       <CompleteQuest questId={questId} />
     </Card>
   );
