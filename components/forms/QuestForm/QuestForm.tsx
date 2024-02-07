@@ -13,10 +13,7 @@ export default function QuestForm({ stats }: QuestFormProps) {
   const [state, formAction] = useFormState(createQuestAction, null);
 
   return (
-    <form
-      action={formAction}
-      className="flex flex-col gap-2 py-6 mx-auto bg-white text-black"
-    >
+    <form action={formAction} className="flex flex-col gap-2 py-6 mx-auto">
       <FormFields stats={stats} />
       <p
         className={`${

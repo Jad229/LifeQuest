@@ -1,5 +1,3 @@
-"use client";
-import Modal from "@/components/ui/Modal";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,34 +6,41 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 import { useState } from "react";
 
 type Props = {
+  title: string;
   children: React.ReactNode;
   description?: string | null | undefined;
 };
 
-export default function QuestDetails({ children, description }: Props) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function QuestDetails({ children, description, title }: Props) {
   return (
     <>
-      <Button onClick={() => setIsModalOpen(true)} variant="ghost">
-        {children}
-      </Button>
-
-      {isModalOpen && (
-        <Modal>
-          <Card>
-            <CardHeader>
-              <CardTitle>Quest Details</CardTitle>
-              <CardDescription>{description}</CardDescription>
-            </CardHeader>
-            <CardFooter>
-              <Button onClick={() => setIsModalOpen(false)}>Close</Button>
-            </CardFooter>
-          </Card>
-        </Modal>
-      )}
+      <AlertDialog>
+        <AlertDialogTrigger>{title}</AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Quest Details</AlertDialogTitle>
+          </AlertDialogHeader>
+          <AlertDialogDescription>{description}</AlertDialogDescription>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Close</AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 }

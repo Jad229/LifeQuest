@@ -27,6 +27,7 @@ export default function CompleteQuest({ questId }: CompleteQuestProps) {
         }}
         id="quest-complete"
         variant="outline"
+        className="bg-green-500 text-black hover:text-green-500"
         size="icon"
       >
         <FaPlus />
