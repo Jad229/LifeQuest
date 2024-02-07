@@ -4,7 +4,8 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
-import Dropdown from "./ui/dropdown";
+import { ThemeToggle } from "./ToggleTheme/ToggleTheme";
+import { DropdownMenu } from "./ui/dropdown-menu";
 
 type Props = {};
 
@@ -19,9 +20,9 @@ export default async function Navbar({}: Props) {
               LifeQuest
             </Link>
           </Button>
-          <Dropdown />
+          <DropdownMenu />
         </li>
-        <li>
+        <li className="flex items-center gap-2">
           {session ? (
             <LogoutButton />
           ) : (
@@ -29,6 +30,7 @@ export default async function Navbar({}: Props) {
               <Link href="/auth">Log In</Link>
             </Button>
           )}
+          <ThemeToggle />
         </li>
       </ul>
     </nav>

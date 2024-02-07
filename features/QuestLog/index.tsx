@@ -28,8 +28,8 @@ function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
   const todoQuests = quests.filter((quest) => quest.category === "todos");
 
   return (
-    <Card>
-      <CardHeader>
+    <Card className="flex-auto w-full">
+      <CardHeader className="flex flex-col justify-center">
         <CardTitle className="text-2xl mb-5">{title}</CardTitle>
         <CardDescription>
           Complete your quests to gain experience!
@@ -38,14 +38,20 @@ function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
         <AddQuest searchParams={searchParams} />
         <hr className="my-3 opacity-30" />
       </CardHeader>
-      <CardContent>
-        <Tabs>
-          <TabsList>
-            <TabsTrigger value="dailies">Dailies</TabsTrigger>
-            <TabsTrigger value="habits">Habits</TabsTrigger>
-            <TabsTrigger value="todos">Todos</TabsTrigger>
+      <CardContent className="border-2 ">
+        <Tabs className="flex flex-col justify-center items-center gap-3">
+          <TabsList className="flex gap-10 w-full ">
+            <TabsTrigger className="font-bold text-lg " value="dailies">
+              Dailies
+            </TabsTrigger>
+            <TabsTrigger className="font-bold text-lg  " value="habits">
+              Habits
+            </TabsTrigger>
+            <TabsTrigger className="font-bold text-lg " value="todos">
+              Todos
+            </TabsTrigger>
           </TabsList>
-          <TabsContent value="dailies">
+          <TabsContent className="flex flex-col gap-3 w-full" value="dailies">
             {dailyQuests.map((quest) => (
               <QuestTile
                 key={quest.id}
@@ -55,7 +61,7 @@ function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
               />
             ))}
           </TabsContent>
-          <TabsContent value="habits">
+          <TabsContent className="flex flex-col gap-3 w-full" value="habits">
             {habitQuests.map((quest) => (
               <QuestTile
                 key={quest.id}
@@ -65,7 +71,7 @@ function QuestLog({ title, quests, searchParams }: QuestLogProps): JSX.Element {
               />
             ))}
           </TabsContent>
-          <TabsContent value="todos">
+          <TabsContent className="flex flex-col gap-3 w-full" value="todos">
             {todoQuests.map((quest) => (
               <QuestTile
                 key={quest.id}

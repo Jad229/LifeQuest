@@ -31,7 +31,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="max-w-6xl mx-auto">
-        <ThemeProvider attribute="dark" defaultTheme="system">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {session && <Navbar />}
           {children}
           <Toaster />
